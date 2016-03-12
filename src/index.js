@@ -19,8 +19,8 @@ Vue.use(VueRouter);
 Vue.use(GoTop);
 
 var router = new VueRouter({
-    hashbang: false,
-    history: true,
+    hashbang: true,
+    history: false,
     saveScrollPosition: true,
     suppressTransitionError: true
 });

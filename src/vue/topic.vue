@@ -71,6 +71,9 @@ export default {
     },
     methods: {
         setType(type) {
+            var headerTop = document.querySelector("header").offsetHeight;
+            var introTop = document.querySelector(".media").offsetHeight;
+            window.scrollTo(0, headerTop+introTop);
             this.show = type;
         },
         getTopic() {
