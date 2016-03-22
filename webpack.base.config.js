@@ -1,11 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
-//var ExtractTextPlugin  = require('extract-text-webpack-plugin');
-var dir = "vue_html5/";
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+var dir = path.resolve(__dirname, '');
 
 module.exports = {
     entry: {
-        index: './' + dir + 'src/index.js',
+        index: ['webpack/hot/dev-server', 'webpack-dev-server/client?http://localhost:8080', dir + '/src/index.js'],
         vendor: [
             'jquery',
             'vue'
@@ -13,7 +13,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: dir + 'bulid',
+        path: dir + '/bulid',
         publicPath: "bulid/"
     },
     resolve: {
@@ -35,10 +35,6 @@ module.exports = {
         }, {
             test: /\.css$/,
             loader: 'style-loader!css-loader'
-            // loader: ExtractTextPlugin.extract(
-            //     "style-loader",
-            //     "css-loader?sourceMap"
-            // )
         }, {
             test: /\.html$/,
             loader: 'html-loader'
@@ -58,6 +54,7 @@ module.exports = {
         "presets": ['es2015']
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.ResolverPlugin(
             new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
         ),
@@ -68,6 +65,7 @@ module.exports = {
             "window.jQuery": "jquery",
             Vue: 'vue'
         }),
+        new OpenBrowserPlugin({ url: 'http://localhost:8080' })
         //===设置抽出css文件名===
         // new ExtractTextPlugin("css/[name].css?[hash]-[chunkhash]-[contenthash]-[name]", {
         //     disable: false,
