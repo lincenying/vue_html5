@@ -37,7 +37,7 @@
 
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 import scrollTab from "../module/scroll-tab";
 import feedAnswer from "./module/feed-answer.vue";
 import feedQuestion from "./module/feed-question.vue";
@@ -68,6 +68,7 @@ export default {
         this.getTopic();
         this.getFeed();
         this.getPerfect();
+
     },
     methods: {
         setType(type) {
